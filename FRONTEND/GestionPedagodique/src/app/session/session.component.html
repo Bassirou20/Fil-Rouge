@@ -1,0 +1,93 @@
+
+<div class="mb-4"></div>
+<!-- <div class="search-bar">
+  <input class="search-input" type="text" placeholder="Rechercher...">
+  <button class="search-button">Rechercher</button>
+</div> -->
+
+<!-- <div>
+  <label>
+    <input id="filter-radio-example-1" type="radio" value="lastday" name="filter-radio"
+           [checked]="selectedFilter === 'lastday'" (change)="onFilterChange('lastday')">
+    Dernier jour
+  </label>
+  <label>
+    <input id="filter-radio-example-2" type="radio" value="last7days" name="filter-radio"
+           [checked]="selectedFilter === 'last7days'" (change)="onFilterChange('last7days')">
+    7 derniers jours
+  </label>
+  <label>
+    <input id="filter-radio-example-3" type="radio" value="last30days" name="filter-radio"
+           [checked]="selectedFilter === 'last30days'" (change)="onFilterChange('last30days')">
+    30 derniers jours
+  </label>
+  <label>
+    <input id="filter-radio-example-4" type="radio" value="lastmonth" name="filter-radio"
+           [checked]="selectedFilter === 'lastmonth'" (change)="onFilterChange('lastmonth')">
+    Mois dernier
+  </label>
+  <label>
+    <input id="filter-radio-example-5" type="radio" value="lastyear" name="filter-radio"
+           [checked]="selectedFilter === 'lastyear'" (change)="onFilterChange('lastyear')">
+    Année dernière
+  </label>
+</div> -->
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Sélectionnez une date" [(ngModel)]="selectedDate">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<button mat-raised-button (click)="filterSessionsByDate()">Filtrer par date</button>
+
+<!-- component -->
+<section class="container mx-auto p-6 w-full font-mono">
+  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+
+    <div class="w-full overflow-x-auto flex  justify-center items-center">
+      <table class="w-full">
+        <thead>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+            <th class="px-4 py-3">professeurs</th>
+            <th class="px-4 py-3">Heure de debut</th>
+            <th class="px-4 py-3">Heure de Fin</th>
+            <th class="px-4 py-3">Classes</th>
+            <th class="px-4 py-3">Statut</th>
+            <th class="px-4 py-3">Date</th>
+            <th class="px-4 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white"  *ngFor="let session of sessions?.slice((page-1)*5, page*5)">
+          <tr class="text-gray-700" [ngClass]="{'annulee': session.annulee}">
+            <td class="px-4 py-3 border">
+              <div class="flex items-center text-sm">
+                <div class="relative w-8 h-8 mr-3 rounded-full md:block">
+                  <!-- <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" /> -->
+                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                </div>
+                <div>
+                  <p class="font-semibold text-black">{{session.cours.professeur.nom_Complet}}</p>
+                  <p class="text-xs text-gray-600">{{session.salle.libelle}}</p>
+                </div>
+              </div>
+            </td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{session.heure_debut}}<span>h</span></td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{session.heure_fin}}<span>h</span></td>
+            <td class="px-4 py-3 text-ms font-semibold border">{{session.cours.classe.libelle}}</td>
+            <td class="px-4 py-3 text-xs border">
+              <span *ngIf="session.etat !== 'annulée'"  class=" px-2 py-1 bbbb font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> {{session.etat}} </span>
+            </td>
+            <td class="px-4 py-3 text-sm border">{{session.date}}</td>
+            <td class="px-4 py-3 text-xs border">
+              <button   class="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600" (click)="annulerSession(session)" >Annuler</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<div class="pagination flex justify-center items-center mt-4">
+  <button class="mr-2 px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" (click)="pagePrecedente()">Page précédente</button>
+  <button class="ml-2 px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" (click)="pageSuivante()">Page suivante</button>
+</div>

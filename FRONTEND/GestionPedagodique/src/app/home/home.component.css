@@ -1,0 +1,95 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+section {
+  margin: 100px 0;
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+.btn {
+  padding: 15px 35px;
+  background-color: #ee2761;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  border: 2px solid #ee2761;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: #ee2761;
+}
+
+.top-sec {
+  text-align: center;
+  padding: 0 0 100px;
+}
+
+.top-sec h3 {
+  font-size: 40px;
+  padding-bottom: 20px;
+  color: #111;
+  position: relative;
+}
+
+.top-sec h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: #ee2761;
+  border-radius: 5px;
+}
+
+/* start header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #94949450;
+  box-shadow: 0px 0px 8px #44444441;
+  z-index: 100;
+}
+
+header nav {
+  width: 85%;
+  margin: auto;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav .logo {
+  color: #111;
+  font-size: 40px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+header nav .logo span {
+  color: #ee2761;
+}
+
+/* Reste du code CSS inchangé */
+
+/* Vous devez également vous assurer que les images existent dans les emplacements spécifiés (img/b-1.jpg, img/b-2.jpg, etc.). */
+
